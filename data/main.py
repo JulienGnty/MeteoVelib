@@ -2,6 +2,11 @@ import requests
 import time
 import json
 from datetime import datetime
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+
+gauth = GoogleAuth()
+drive = GoogleDrive(gauth)
 
 def dlStationsInfo():
     """
@@ -33,6 +38,14 @@ def dlStationsStatus():
         outfile.write(json_object)
         
     print("Stations Status (updated at ", dt_update, ") downloaded successfully", sep="")
+
+    file = drive.CreateFile({
+        "title": "stations_status"+str_update+".json",
+        "mimeType": "application/json",
+        "parents": [{"id": "18x6j09DVTGBNaatYAEoN3ErPwNf250fy"}]
+    })
+    file.SetContentFile("download/stations_status"+str_update+".json")
+    file.Upload()
 
 def loopDlStatus(mloop = 0):
     """
