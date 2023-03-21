@@ -4,9 +4,12 @@ import json
 import re
 import datetime as dt
 import pandas as pd
+import numpy as np
 from glob import glob
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+
+LIMITS = [5,25,75,95]
 
 gauth = GoogleAuth()
 drive = GoogleDrive(gauth)
@@ -41,6 +44,27 @@ def setDataset(day: str):
     for i in range(1,len(list_files)):
         dftemp = read_data(list_files[i])
         df = pd.concat([df, dftemp])
+
+    # Read the information of each station (name, location, capacity)
+    info = pd.read_json('download/stations_info.json')
+    data_info = pd.DataFrame(info.data.stations)
+
+    df = df.merge(data_info, on = "station_id").drop(["rental_methods", "stationCode"] , axis=1)
+    df["occupation_prct"] = 100 * df["num_bikes_available"] / df["capacity"]
+
+    conditions = [(df['occupation_prct'] < LIMITS[0])]
+
+    for i in range(len(LIMITS)):
+        if i == len(LIMITS)-1:
+            conditions.append((df['occupation_prct'] >= LIMITS[i]))
+        else:
+            conditions.append((df['occupation_prct'] >= LIMITS[i]) & (df['occupation_prct'] < LIMITS[i+1]))
+
+    # create a list of the values we want to assign for each condition
+    values = [i for i in range(len(LIMITS)+1)]
+
+    # create a new column and use np.select to assign values to it using our lists as arguments
+    df['occupation_class'] = np.select(conditions, values)
 
     compression_opts = dict(method = "zip", archive_name = "stations_status_"+day+".csv")
     df.to_csv("datasets/stations_status_"+day+".zip",compression = compression_opts)
