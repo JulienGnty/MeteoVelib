@@ -5,6 +5,7 @@ import re
 import datetime as dt
 import pandas as pd
 import numpy as np
+import conf as cf
 from glob import glob
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
@@ -33,7 +34,11 @@ def read_data(path_file: str) -> object:
     #Adds a field for the time
     data['time'] = date
     data['weekday'] = date.weekday()
-    data['hour'] = date.time()
+    data['year'] = data["time"].dt.year
+    data['month'] = data["time"].dt.month
+    data['day'] = data["time"].dt.day
+    data['hour'] = data["time"].dt.hour
+    data['minute'] = data["time"].dt.minute
 
     return data
 
@@ -44,6 +49,40 @@ def setDataset(day: str):
     for i in range(1,len(list_files)):
         dftemp = read_data(list_files[i])
         df = pd.concat([df, dftemp])
+
+    weather_dict = {
+        "weather": [],
+        "temperature": [],
+        "humidity": [],
+        "visibility": [],
+        "wind_speed": [],
+        "wind_deg": [],
+        "clouds": [],
+        "year": [],
+        "month": [],
+        "day": [],
+        "hour": [],
+    }
+    weather_files = glob("download/weather_"+day+"_*.json")
+    
+    for file in weather_files:
+        f = open(file)
+        data = json.load(f)
+        weather_dict["weather"].append(data["weather"][0]["main"])
+        weather_dict["temperature"].append(data["main"]["temp"])
+        weather_dict["humidity"].append(data["main"]["humidity"])
+        weather_dict["visibility"].append(data["visibility"])
+        weather_dict["wind_speed"].append(data["wind"]["speed"])
+        weather_dict["wind_deg"].append(data["wind"]["deg"])
+        weather_dict["clouds"].append(data["clouds"]["all"])
+        weather_dict["year"].append(data["time"]["year"])
+        weather_dict["month"].append(data["time"]["month"])
+        weather_dict["day"].append(data["time"]["day"])
+        weather_dict["hour"].append(data["time"]["hour"])
+
+    df_weather = pd.DataFrame.from_dict(weather_dict)
+
+    df = df.merge(df_weather, on = ["year", "month", "day", "hour"])
 
     # Read the information of each station (name, location, capacity)
     info = pd.read_json('download/stations_info.json')
@@ -79,6 +118,36 @@ def setDataset(day: str):
 
     print("Dataset uploaded successfully")
 
+def dlWeather():
+    """
+        Download current Weather data from OpenWeatherMap
+    """
+    base_url = f"https://api.openweathermap.org/data/2.5/weather?lat={cf.LAT}&lon={cf.LON}&appid={cf.KEY}"
+    response = requests.get(base_url)
+
+    data_dict = response.json()
+    
+    dt_update = dt.datetime.now()
+    y, m, d, h = (
+        str(dt_update.year),
+        str(dt_update.month).zfill(2),
+        str(dt_update.day).zfill(2),
+        str(dt_update.hour).zfill(2)
+    )
+    str_update = "_" + y + "_" + m + "_" + d + "_" + h
+
+    data_dict["time"] = { 
+        "year": dt_update.year,
+        "month": dt_update.month,
+        "day": dt_update.day,
+        "hour": dt_update.hour,
+    }
+    
+    with open("download/weather"+str_update+".json", "w") as outfile:
+        json.dump(data_dict, outfile)
+        
+    print("Current Weather (updated at ", dt_update, ") downloaded successfully", sep="")
+
 def dlStationsInfo():
     """
         Download stations informations from Velib OpenData
@@ -110,6 +179,7 @@ def dlStationsStatus():
         
     print("Stations Status (updated at ", dt_update, ") downloaded successfully", sep="")
 
+    """ DISABLED - TO UPLOAD ON GOOGLE DRIVE
     file = drive.CreateFile({
         "title": "stations_status"+str_update+".json",
         "mimeType": "application/json",
@@ -117,6 +187,7 @@ def dlStationsStatus():
     })
     file.SetContentFile("download/stations_status"+str_update+".json")
     file.Upload()
+    """
 
 def loopDlStatus(mloop = 0):
     """
@@ -124,23 +195,36 @@ def loopDlStatus(mloop = 0):
 
         If mloop = 0 (default value), it starts infinite loop
     """
+    # Used for mloop
     start_tm = time.time()
+
+    # Used for setting Datasat at midnight
     start_date = dt.date.today()
+
+    # Used for downloading current weather every hour
+    weather_date = dt.datetime.now()
 
     while True:
         try:
             dlStationsStatus()
+            
+            now_dt = dt.datetime.now()
+            if weather_date.hour != now_dt.hour and now_dt.minute > 20:
+                dlWeather()
+                weather_date = now_dt           
         except Exception as e:
             print(e)
-        finally:
-            now_tm = time.time()
+        finally:            
+            now_tm = time.time()            
             if mloop and (now_tm - start_tm)/60 < mloop:
                 break;
+            
             now_date = dt.date.today()
             if start_date != now_date:
                 start_date = now_date
                 yesterday = start_date - dt.timedelta(days = 1)
                 setDataset(str(yesterday).replace("-","_"))
+
             time.sleep(120)
 
 def main():
