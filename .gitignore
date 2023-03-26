@@ -1,6 +1,10 @@
 # My owned ignored files and directories
 Draft*.*
 data/download/*.json
+client_secrets.json
+credentials.json
+settings.yaml
+conf.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

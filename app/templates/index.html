@@ -1,0 +1,84 @@
+<!-- {% extends "bootstrap/base.html" %}{% block content %}-->
+
+<div class="container">
+  <div class="jumbotron" style="background-color:#1daeff !important;">
+    <h2 style="color:#fff;">Meteo velib</h2>      
+  </div>
+</div>
+
+<div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading" style="background-color:#1563ff ">Veuillez choisir un temps de départ</div>
+      <div class="panel-body">
+      
+<!-- Main Input For Receiving Query to our ML -->	
+      	<form action="{{ url_for('predict')}}" method="POST">
+			<input type="datetime-local" name="namequery"> <!--value="2023-03-23T12:00"-->
+			<button type="submit" class="btn btn-primary">Go</button>
+			</form>
+			
+      </div>
+      
+
+      	<form action="{{ url_for('predict')}}" method="GET">
+            <button type="submit" class="btn btn-primary">Reset</button>
+        </form>
+            
+    </div>
+</div>
+
+<div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading" style="background-color:#1563ff ">Veuillez choisir une station de départ</div>
+      <div class="panel-body">
+          <button type="submit" class="btn btn-primary">Près de moi</button>
+          
+          <br>
+          	
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d70632.53636930305!2d2.385094114493171!3d48.860165956382644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sfr!4v1679585240320!5m2!1sen!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          
+    </div>
+</div>
+    
+
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="background-color:#1563ff ">Stations de départ suggérées:</div>
+        <div class="panel-body">
+	
+	
+
+
+            <table style="width:100%">
+                <tr>
+                    <th>Station name</th>
+                    <th>Station ID</th>
+                    <th>Distance</th>
+                    <th>State at time 1</th>
+                    <th>State at time 2</th>
+                    <th>State at time 3</th>
+                </tr>  
+                 {% for item in my_list %}
+                  <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>{{ item[5] }}</td>
+                  </tr>
+                  {% endfor %}
+              
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/styles.css')}}">
+<!-- {% endblock %} -->
+
+
