@@ -16,8 +16,8 @@ def getStationsStatus(path_file: str) -> object:
     #Reads the dataframe in the input file
     data0 = pd.read_json(path_file)
     data = pd.DataFrame(data0.data.stations)
-    data.insert(3, 'num_bikes_available_mech', data.num_bikes_available_types.apply(lambda x: int(x[0].get('mechanical')) ) )
-    data.insert(4, 'num_bikes_available_elec', data.num_bikes_available_types.apply(lambda x: int(x[1].get('ebike')) ) )
+    data.insert(3, 'num_bikes_available_mech', data.num_bikes_available_types.apply(lambda x: x[0].get('mechanical')) )
+    data.insert(4, 'num_bikes_available_elec', data.num_bikes_available_types.apply(lambda x: x[1].get('ebike')) )
 
     #Removes the dupe columns
     data = data.drop(['numBikesAvailable','numDocksAvailable','stationCode','num_bikes_available_types'] , axis=1)
