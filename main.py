@@ -88,46 +88,75 @@ def dlStationsStatus(google = False):
         
         print("File uploaded successfully")
 
-def loopDlStatus(mloop = 0):
+
+def loopDlStatus(info = True, status = True, weather = True, dataset = True):
     """
-        Starts a loop to download data for mloop minutes
-
-        If mloop = 0 (default value), it starts infinite loop
+        Starts a loop to download data.
+        Paramaters:
+        - info: default True; If True, this function loads station_informations.json at midnight
+        - status: default True; If True, this function loads station_status.json every 2 minutes
+        - weather: default True; If True, this function loads weather from OpenWeatherMap every hour
+        - dataset: default True; If True, this function creates Dataset of the last day at midnight    
     """
-    # Used for mloop
-    start_tm = time.time()
+    info_dl = info
+    status_dl = status
+    weather_dl = weather
+    create_dataset = False
 
-    # Used for setting Datasat at midnight
-    start_date = dt.date.today()
-
-    # Used for downloading current weather every hour
-    weather_date = dt.datetime.now()
+    last_dt = dt.datetime.now()
 
     while True:
-        try:
-            dlStationsStatus()
+        now_dt = dt.datetime.now()
+
+        if last_dt.day != now_dt.day:
+            info_dl = info
+            create_dataset = dataset
+        
+        if last_dt.hour != now_dt.hour:
+            weather_dl = weather
             
-            now_dt = dt.datetime.now()
-            if weather_date.hour != now_dt.hour and now_dt.minute > 20:
+        last_dt = now_dt
+        
+        if info_dl:
+            try:
+                dlStationsInfo()
+            except Exception as e:
+                print("Error with stations informations download")
+                print(e)
+            else:
+                info_dl = False
+                
+        if status_dl:
+            try:
+                dlStationsStatus()         
+            except Exception as e:
+                print("Error with stations status download")
+                print(e)
+
+        if weather_dl:
+            try:
                 dlWeather()
-                weather_date = now_dt           
-        except Exception as e:
-            print(e)
-        finally:            
-            now_tm = time.time()            
-            if mloop and (now_tm - start_tm)/60 < mloop:
-                break;
-            
-            now_date = dt.date.today()
-            if start_date != now_date:
-                start_date = now_date
-                yesterday = start_date - dt.timedelta(days = 1)
+            except Exception as e:
+                print("Error with weather data download")
+                print(e)
+            else:
+                weather_dl = False
+
+        if create_dataset:
+            try:
+                yesterday = dt.date.today() - dt.timedelta(days = 1)
                 dst.setDataset(str(yesterday).replace("-","_"))
+            except Exception as e:
+                print("Error with creation of Dataset for " + str(yesterday).replace("-","_"))
+                print(e)
+            else:
+                create_dataset = False
+                # To skip the time sleep, because this part is very long
+                continue
+        
+        time.sleep(120)
 
-            time.sleep(120)
-
-def main():
-    dlStationsInfo()
+def main():    
     loopDlStatus()
 
 if __name__ == "__main__":
