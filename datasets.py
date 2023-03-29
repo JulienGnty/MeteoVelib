@@ -43,7 +43,25 @@ def getStationsInfo() -> object:
     """
     info = pd.read_json(cf.DIRPATH + 'data/download/stations_info.json')
     data_info = pd.DataFrame(info.data.stations)
-    feat = ["station_id", "stationCode", "name", "lon", "lat", "capacity"]
+    
+    alt_dict = {
+        "station_id": [],
+        "altitude": [],
+    }
+    with open(cf.DIRPATH + "data/download/altitude.json") as file:
+        data_alt = json.load(file)
+
+    print(type(data_alt))
+
+    for key in data_alt.keys():
+        alt_dict["station_id"].append(int(key))
+        alt_dict["altitude"].append(float(data_alt[key]))
+
+    df_alt = pd.DataFrame.from_dict(alt_dict)
+    data_info = data_info.merge(df_alt, on = "station_id")
+    
+    feat = ["station_id", "stationCode", "name", "lon", "lat", "altitude", "capacity"]
+    
     return data_info[feat]
 
 def getWeatherData(day: str) -> object:
@@ -146,12 +164,82 @@ def setDataset(day: str, google = False):
         
         print("Dataset uploaded successfully")
 
+def setDatasetV2(day: str, google = False):
+    """
+        Create a Dataset and save it in compressed file, for the day chosen
+        'day' parameter should be a str in that format:
+        %Y_%m_%d
+        
+        'google' paramater to define if it save the Dataset to the google drive
+    """
+    list_files_dl = []
+    
+    for i in range(24):
+        # Get all stations status of the day
+        list_files = glob(cf.DIRPATH + "data/download/stations_status_" + day + "_" + str(i).zfill(2) + "*.json")
+        if len(list_files) == 0:
+            continue
+        data_per_hour = len(list_files)//4
+        list_files_dl += list_files[0::data_per_hour + 1]
+
+    df = getStationsStatus(list_files_dl[0])
+    for i in range(1,len(list_files_dl)):
+        dftemp = getStationsStatus(list_files_dl[i])
+        df = pd.concat([df, dftemp])
+
+    # Merge with Weather Data
+    df = df.merge(getWeatherData(day), on = ["year", "month", "day", "hour"])
+
+    # Merge with Stations Informations
+    df = df.merge(getStationsInfo(), on = "station_id")
+
+    STRIKE_DAYS = ["2023_03_23", "2023_03_28"]
+
+    if day in STRIKE_DAYS:
+        df["strike"] = 1
+    else:
+        df["strike"] = 0
+
+    DEMONSTRATION_DAYS = ["2023_03_18", "2023_03_23", "2023_03_28"]
+
+    if day in DEMONSTRATION_DAYS:
+        df["demonstration"] = 1
+    else:
+        df["demonstration"] = 0
+    
+    # Create two columns: occupation_prct and occupation_class
+    df["occupation_prct"] = 100 * df["num_bikes_available"] / df["capacity"]
+    conditions = [(df['occupation_prct'] < cf.LIMITS[0])]
+    for i in range(len(cf.LIMITS)):
+        if i == len(cf.LIMITS)-1:
+            conditions.append((df['occupation_prct'] >= cf.LIMITS[i]))
+        else:
+            conditions.append((df['occupation_prct'] >= cf.LIMITS[i]) & (df['occupation_prct'] < cf.LIMITS[i+1]))
+    values = [i for i in range(len(cf.LIMITS)+1)]
+    df['occupation_class'] = np.select(conditions, values)
+
+    # Compress and save the Dataframe into datasets folder
+    compression_opts = dict(method = "zip", archive_name = "stations_statusV2_"+day+".csv")
+    df.to_csv(cf.DIRPATH + "data/datasets/stations_statusV2_"+day+".zip",compression = compression_opts)
+    
+    print("Dataset created successfully")
+
+    if google:
+        file = drive.CreateFile({
+            "title": "stations_statusV2_"+day+".zip",
+            "mimeType": "application/zip",
+            "parents": [{"id": "1MFeACkAsxibfyoH_bviZPYXOZ16hoCgl"}]
+        })
+        file.SetContentFile(cf.DIRPATH + "data/datasets/stations_statusV2_"+day+".zip")
+        file.Upload()
+        
+        print("Dataset uploaded successfully")
+        
+
 def listDatasets() -> list:
     return glob(cf.DIRPATH + "data/datasets/stations_status_*.zip")
 
 if __name__ == "__main__":
     print(cf.DIRPATH + "data/download/stations_info.json")
     print(getStationsInfo())
-    print(getWeatherData("2023_03_25"))
-    print(getStationsStatus(cf.DIRPATH + "data/download/stations_status_2023_03_24_16_00_44.json").dtypes)
-    print(setDataset("2023_03_25"))
+    print(setDatasetV2("2023_03_28"))
