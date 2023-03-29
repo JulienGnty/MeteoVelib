@@ -102,13 +102,13 @@ def getWeatherData(day: str) -> object:
 
     return pd.DataFrame.from_dict(weather_dict)
 
-def getDataset(day: str) -> object:
+def getDataset(day: str, version = "") -> object:
     """
         Return a DataFrame object containing the data of the day chosen
         'day' parameter should be a str in that format:
         %Y_%m_%d
     """
-    df = pd.read_csv(cf.DIRPATH + "data/datasets/stations_status_" + day + ".zip")
+    df = pd.read_csv(cf.DIRPATH + "data/datasets/stations_status" + version + "_" + day + ".zip")
     df['time'] = pd.to_datetime(df['time'])
     df = df.drop(["Unnamed: 0"] , axis=1)
     return df
@@ -135,6 +135,20 @@ def setDataset(day: str, google = False):
 
     # Merge with Stations Informations
     df = df.merge(getStationsInfo(), on = "station_id")
+
+    STRIKE_DAYS = ["2023_03_23", "2023_03_28"]
+
+    if day in STRIKE_DAYS:
+        df["strike"] = 1
+    else:
+        df["strike"] = 0
+
+    DEMONSTRATION_DAYS = ["2023_03_18", "2023_03_23", "2023_03_28"]
+
+    if day in DEMONSTRATION_DAYS:
+        df["demonstration"] = 1
+    else:
+        df["demonstration"] = 0
     
     # Create two columns: occupation_prct and occupation_class
     df["occupation_prct"] = 100 * df["num_bikes_available"] / df["capacity"]
@@ -236,10 +250,11 @@ def setDatasetV2(day: str, google = False):
         print("Dataset uploaded successfully")
         
 
-def listDatasets() -> list:
-    return glob(cf.DIRPATH + "data/datasets/stations_status_*.zip")
+def listDatasets(version = "") -> list:
+    return glob(cf.DIRPATH + "data/datasets/stations_status" + version + "_*.zip")
 
 if __name__ == "__main__":
     print(cf.DIRPATH + "data/download/stations_info.json")
     print(getStationsInfo())
-    print(setDatasetV2("2023_03_28"))
+    print(list_Datasets())
+    print(list_Datasets(version = "V2"))
