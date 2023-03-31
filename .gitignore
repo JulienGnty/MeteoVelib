@@ -5,7 +5,6 @@ data/download/weather*.json
 client_secrets.json
 credentials.json
 settings.yaml
-conf.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
