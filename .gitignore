@@ -1,7 +1,18 @@
 # My owned ignored files and directories
 Draft*.*
 data/download/stations_status*.json
-data/download/weather*.json
+data/download/weather_2023_03_1*.json
+data/download/weather_2023_03_20*.json
+data/download/weather_2023_03_21*.json
+data/download/weather_2023_03_22*.json
+data/download/weather_2023_03_23*.json
+data/download/weather_2023_03_24*.json
+data/download/weather_2023_03_25*.json
+data/download/weather_2023_03_26*.json
+data/download/weather_2023_03_27*.json
+data/download/weather_2023_03_29*.json
+data/download/weather_2023_03_3*.json
+data/download/weather_2023_04*.json
 client_secrets.json
 credentials.json
 settings.yaml
