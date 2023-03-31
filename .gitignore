@@ -1,6 +1,7 @@
 # My owned ignored files and directories
 Draft*.*
-data/download/*.json
+data/download/stations_status*.json
+data/download/weather*.json
 client_secrets.json
 credentials.json
 settings.yaml
