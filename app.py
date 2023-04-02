@@ -192,10 +192,12 @@ def get_table_line(station, time_str , ret_classif = 0):
 
 @app.route('/')
 def hello():
-    return render_template('index.html')
+    lat_u = random.uniform(48.8,48.9)
+    lon_u = random.uniform(2.3,2.4)
+    return render_template('index.html', lat = round(lat_u, 5), lon = round(lon_u, 5))
 
 
-@app.route('/predict', methods=['GET','POST','PUT'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
     if request.method == 'POST':
         # On récupère le champ namequery du template index
@@ -206,8 +208,8 @@ def predict():
             
         # On n'utilisera pas une station_id en entrée mais une position de
         # l'utilisateur à base de latitude/longitude
-        lat_u = random.uniform(48.8,48.9)
-        lon_u = random.uniform(2.3,2.4)
+        lat_u = float(request.form['lat_inp'])
+        lon_u = float(request.form['lon_inp'])
         selected_station = get_station_close(lat_u, lon_u)
 
         # We generate the list "my_list" that is used to create the tables in
@@ -219,7 +221,7 @@ def predict():
         iframe = get_iframe(lat_u, lon_u, 16, time_str)
         
         # Render the response in the result.html template
-        return render_template('predict.html', my_list = my_list, hour1 = time_str[11:16], iframe = iframe)
+        return render_template('predict.html', my_list = my_list, hour1 = time_str[11:16], iframe = iframe, lat = round(lat_u, 5), lon = round(lon_u, 5))
                                
     #This is called by the reset button on index.html. Used for tests.
     elif request.method == 'GET':

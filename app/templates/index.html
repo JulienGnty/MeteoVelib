@@ -39,10 +39,11 @@
       
 <!-- Main Input For Receiving Query to our ML -->	
       	<form action="{{ url_for('predict')}}" method="POST">
-			<input type="datetime-local" name="timequery"> <!--value="2023-03-23T12:00"-->
-			<input type="text" name="stationquery">
+			<input type="datetime-local" name="timequery"> <!--value="2023-03-23T12:00"--><br><br>
+			<input type="text" id="lat_inp" name="lat_inp" value={{ lat }}><br><br>
+			<input type="text" id="lon_inp" name="lon_inp" value={{ lon }}><br><br>
 			<button type="submit" class="btn btn-primary">Go</button>
-			</form>
+		</form>
 			
       </div>
       
