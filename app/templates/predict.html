@@ -46,62 +46,43 @@
 </div>
 
 
-<div class="panel-group">
-    <div class="panel panel-primary">
-      <div class="panel-heading" style="background-color:#1563ff ">Choisissez une station de départ</div>
-            <div class="panel-body">
-<!--          <input type="text" id="lat"> <input type="text" id="long">  -->    
-          <button onclick=random_lat_lon() class="btn btn-primary">Près de moi</button>
-<!--
-          <script>
-            function random_lat_lon(){
-                document.getElementById("lat").innerHTML = 48.8+Math.random()/10;
-                document.getElementById("lon").innerHTML = 2.3+Math.random()/10;
-            }
-        </script>  
-  -->        
-          <br>
-          	
-		
-           <iframe id="map" height="400px" width="600px" {{ iframe|safe }} ></iframe>     
-			
-
-		  
-    </div>
-</div>
+	<div class="panel-group">
+		<div class="panel panel-primary">
+			<div class="panel-heading" style="background-color:#1563ff ">Choisissez une station de départ</div>
+			<div class="panel-body">
+				<button onclick=random_lat_lon() class="btn btn-primary">Près de moi</button>     
+				<br>
+				<iframe id="map" height="400px" width="600px" {{ iframe|safe }} ></iframe>     
+			</div>
+		</div>
+	</div>
     
 
-<div class="panel-group">
-    <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#1563ff ">Stations de départ suggérées:</div>
-        <div class="panel-body">
-	
-	
-
-
-            <table style="width:100%">
-                <tr>
-                    <th>Nom de la station</th>
-                    <th>Identifiant </th>
-                    <th>Distance</th>
-                    <th>Disponibilité à {{hour1}}</th>
-                    <th>Capacité</th>
-                </tr>  
-                 {% for item in my_list %}
-                  <tr>
-                    <td>{{ item[0] }}</td>
-                    <td>{{ item[1] }}</td>
-                    <td>{{ item[2] }}</td>
-                    <td>{{ item[3] }}</td>
-                    <td>{{ item[4] }}</td>
-                  </tr>
-                  {% endfor %}
-              
-            </table>
-
-        </div>
-    </div>
-</div>
+	<div class="panel-group">
+		<div class="panel panel-primary">
+			<div class="panel-heading" style="background-color:#1563ff ">Stations de départ suggérées:</div>
+			<div class="panel-body">
+				<table style="width:100%">
+					<tr>
+						<th>Nom de la station</th>
+						<th>Identifiant </th>
+						<th>Distance</th>
+						<th>Disponibilité à {{hour1}}</th>
+						<th>Capacité</th>
+					</tr>  
+					{% for item in my_list %}
+					<tr>
+						<td>{{ item[0] }}</td>
+						<td>{{ item[1] }}</td>
+						<td>{{ item[2] }}</td>
+						<td>{{ item[3] }}</td>
+						<td>{{ item[4] }}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
 
 </body>
 

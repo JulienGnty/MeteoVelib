@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify, request, render_template
 from flask_bootstrap import Bootstrap
 import folium
@@ -13,6 +12,8 @@ import random
 import sys
 from math import radians, sin, cos, sqrt, asin
 import conf as cf
+from glob import glob
+from datasets import getStationsStatus, getStationsInfo
 
 
 app = Flask(__name__, template_folder='app/templates')
@@ -24,6 +25,15 @@ with open(cf.DIRPATH + 'model/velib_model_list.json') as f:
 STATION_INFO = pd.read_json(cf.DIRPATH + 'data/download/stations_info.json').data[0]
 
 LABELS = ["Class 0", "Class 1","Class 2","Class 3","Class 4"]
+
+
+# Pour faire un dégradé de couleurs
+# Dans cet exemple: 10 étapes pour passer du rouge au vert
+def red(brightness):
+    redc = Color("red")
+    colors = list(redc.range_to(Color("green").hex,10))
+    brightness = min([int(round(9 * brightness)),9]) # convert from 0.0-1.0 to 0-255
+    return colors[brightness]
 
 
 #Fonctions et variables nécessaires à la prédiction : 
@@ -47,7 +57,54 @@ def get_station_info(station_info: object, station_id: str):
 
 
 # lat=48.856614, lon=2.3522219
-def get_iframe(lat=48.856614, lon=2.3522219, zoom=12, time_str=""):
+def get_iframe_current_occup(lat = 48.856614, lon = 2.3522219, zoom = 12, time_str = ""):
+    """
+        Create a map as an iframe to embed on a page.
+    """
+    today = dt.datetime.now()
+    year = str(today.year)
+    month = str(today.month).zfill(2)
+    day = str(today.day).zfill(2)
+    list_files = glob(cf.DIRPATH + "data/download/stations_status_" + year + "_" + month + "_" + day + "_*.json")
+
+    df = getStationsStatus(list_files[-1])
+
+    df = df.merge(getStationsInfo(), on = "station_id")
+    
+    m = folium.Map(location = [lat, lon], zoom_start = zoom )
+
+    # set the iframe width and height
+    m.get_root().width = "800px"
+    m.get_root().height = "600px"
+
+    for _, row in df.iterrows():
+        if row["capacity"]:
+            occupation  = row["num_bikes_available"] / row["capacity"]
+            if occupation > 1:
+                occupation = 1.0
+        else:
+            occupation = 0.0
+        
+        folium.CircleMarker(
+            location = [row['lat'], row['lon']],
+            color = "#000000",
+            weight = 2,
+            fill_color = red(occupation).hex,            
+            # fill_color = red(abs(y_test)).hex,            
+            #fill_color = "#000000",
+            fill_opacity = 1.0,
+            # popup = str(v.y_test) + " % ",
+            popup = "Station n°" + str(row['stationCode']) + " - "+str(row['name']),
+            radius = 2 + 3 * (row["capacity"] / 74),
+        ).add_to(m)
+
+    iframe = m.get_root()._repr_html_()
+
+    return iframe
+
+
+# lat=48.856614, lon=2.3522219
+def get_iframe(lat = 48.856614, lon = 2.3522219, zoom = 12, time_str = ""):
     """
         Create a map as an iframe to embed on a page.
     """
@@ -86,14 +143,6 @@ def get_iframe(lat=48.856614, lon=2.3522219, zoom=12, time_str=""):
 
     return iframe
 
-# Pour faire un dégradé de couleurs
-# Dans cet exemple: 10 étapes pour passer du rouge au vert
-red = Color("red")
-colors = list(red.range_to(Color("green").hex,10))
-
-def red(brightness):
-    brightness = min([int(round(9 * brightness)),9]) # convert from 0.0-1.0 to 0-255
-    return colors[brightness]
 
 #Compute the distance in km between two points knowing their latitudes and
 # longitudes (cf wikipedia haversine formula)
@@ -169,15 +218,17 @@ def get_table_line(station, time_str , ret_classif = 0):
         columns = ["temperature", "humidity", "wind_speed", "strike", "demonstration",
                    "weekday", "year", "month", "day", "hour", "minute"]
     )
-    
-    model_name = 'velib_model_' + str(station['station_id']) + '.joblib.z'
-    model = joblib.load(cf.DIRPATH + "model/" + model_name) 
-    #model = model_dict[station_int]
 
-    #Predict the occupation percentage
-    classif = predict_occup(model, x_data)
-    if ret_classif :
-        return classif
+    # Check if this station has a model
+    if MODEL_INFO[str(station_int)]:
+        model_name = 'velib_model_' + str(station['station_id']) + '.joblib.z'
+        model = joblib.load(cf.DIRPATH + "model/" + model_name) 
+        #model = model_dict[station_int]
+
+        #Predict the occupation percentage
+        classif = predict_occup(model, x_data)
+        if ret_classif :
+            return classif
 
 
     name = station['name']
@@ -194,7 +245,8 @@ def get_table_line(station, time_str , ret_classif = 0):
 def hello():
     lat_u = random.uniform(48.8,48.9)
     lon_u = random.uniform(2.3,2.4)
-    return render_template('index.html', lat = round(lat_u, 5), lon = round(lon_u, 5))
+    iframe = get_iframe_current_occup()
+    return render_template('index.html', lat = round(lat_u, 5), lon = round(lon_u, 5), iframe = iframe)
 
 
 @app.route('/predict', methods=['GET','POST'])
