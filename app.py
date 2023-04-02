@@ -94,7 +94,7 @@ def get_iframe_current_occup(lat = 48.856614, lon = 2.3522219, zoom = 12, time_s
             #fill_color = "#000000",
             fill_opacity = 1.0,
             # popup = str(v.y_test) + " % ",
-            popup = "Station n°" + str(row['stationCode']) + " - "+str(row['name']),
+            popup = "Station n°" + str(row['stationCode']) + "\n"+str(row['name']),
             radius = 2 + 3 * (row["capacity"] / 74),
         ).add_to(m)
 
@@ -104,7 +104,7 @@ def get_iframe_current_occup(lat = 48.856614, lon = 2.3522219, zoom = 12, time_s
 
 
 # lat=48.856614, lon=2.3522219
-def get_iframe(lat = 48.856614, lon = 2.3522219, zoom = 12, time_str = ""):
+def get_iframe_predicted(close_stations, lat = 48.856614, lon = 2.3522219, zoom = 12, time_str = ""):
     """
         Create a map as an iframe to embed on a page.
     """
@@ -114,26 +114,36 @@ def get_iframe(lat = 48.856614, lon = 2.3522219, zoom = 12, time_str = ""):
     m.get_root().width = "800px"
     m.get_root().height = "600px"
 
+    test = True
     for v in STATION_INFO:
-        folium.CircleMarker(
-            location = [v['lat'], v['lon']],
-            color = "#000000",
-            weight = 2,
-            # fill_color = red(abs(v.y_test/100)).hex,            
-            # fill_color = red(abs(y_test)).hex,            
-            fill_color = "#000000",
-            fill_opacity = 1.0,
-            # popup = str(v.y_test) + " % ",
-            popup = "Station n°" + str(v['stationCode']) + " - "+str(v['name']),
-            radius = 5
-        ).add_to(m)
+        if v["station_id"] in close_stations.keys():
+            occupation = close_stations[v["station_id"]][-2]/close_stations[v["station_id"]][-1]
+            folium.CircleMarker(
+                location = [v['lat'], v['lon']],
+                color = "#000000",
+                weight = 2,
+                fill_color = red(occupation).hex,            
+                fill_opacity = 1.0,
+                popup = "Station n°" + str(v['stationCode']) + "\n"+str(v['name']),
+                radius = 2 * (3 + 2 * (v["capacity"] / 74)),
+            ).add_to(m)
+        else:
+            folium.CircleMarker(
+                location = [v['lat'], v['lon']],
+                color = "#000000",
+                weight = 2,
+                fill_color = "#000000",
+                fill_opacity = 0.3,
+                popup = "Station n°" + str(v['stationCode']) + "\n"+str(v['name']),
+                radius = 4 + 1 * (v["capacity"] / 74),
+            ).add_to(m)
 
     #Marker for the user's position
     folium.CircleMarker(
         location = [lat, lon],
-        color = "#f13600",
+        color = "#3333CC",
         weight = 2,
-        fill_color = "#f13600",
+        fill_color = "#3333CC",
         fill_opacity = 1.0,
         popup = "User",
         radius = 5
@@ -167,7 +177,7 @@ def distance(lon1 :float, lat1 :float, lon2 :float, lat2 :float):
 def get_station_close(lat :float, lon :float, nmax = 5 ):
     dict_distance={}
     for station in STATION_INFO:
-        dict_distance[station['station_id']]=distance(station['lon'], station['lat'], lon, lat)
+        dict_distance[station['station_id']] = distance(station['lon'], station['lat'], lon, lat)
 
     key_list = []
     for k, v in sorted(dict_distance.items(), key=lambda item: item[1])[:nmax] :
@@ -220,15 +230,19 @@ def get_table_line(station, time_str , ret_classif = 0):
     )
 
     # Check if this station has a model
-    if MODEL_INFO[str(station_int)]:
-        model_name = 'velib_model_' + str(station['station_id']) + '.joblib.z'
-        model = joblib.load(cf.DIRPATH + "model/" + model_name) 
-        #model = model_dict[station_int]
+    if not MODEL_INFO[str(station_int)]:
+        return (station['name'], station['stationCode'], station['distance'] * 1000, 0, 0)
+        
+    model_name = 'velib_model_' + str(station['station_id']) + '.joblib.z'
+    model = joblib.load(cf.DIRPATH + "model/" + model_name) 
+    #model = model_dict[station_int]
 
-        #Predict the occupation percentage
-        classif = predict_occup(model, x_data)
-        if ret_classif :
-            return classif
+    #Predict the occupation percentage
+    classif = predict_occup(model, x_data)
+
+    # TODO: Delete
+    if ret_classif :
+        return classif
 
 
     name = station['name']
@@ -267,10 +281,13 @@ def predict():
         # We generate the list "my_list" that is used to create the tables in
         # the html by looping on each selected station
         my_list = []
+        my_dict = {}
         for station in selected_station :
-            my_list.append(get_table_line(station, time_str))
+            row = get_table_line(station, time_str)
+            my_list.append(row)
+            my_dict[station["station_id"]] = row
 
-        iframe = get_iframe(lat_u, lon_u, 16, time_str)
+        iframe = get_iframe_predicted(my_dict, lat_u, lon_u, 16, time_str)
         
         # Render the response in the result.html template
         return render_template('predict.html', my_list = my_list, hour1 = time_str[11:16], iframe = iframe, lat = round(lat_u, 5), lon = round(lon_u, 5))
@@ -279,6 +296,7 @@ def predict():
     elif request.method == 'GET':
         return render_template('index.html')
 
+    # TODO: Remove ?
     elif request.method == 'PUT':
         # Retrieve parameters from the request body
         lat = request.args.get('lat')
