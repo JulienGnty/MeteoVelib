@@ -15,10 +15,11 @@ Pour la partie extraction de données, il faut une __clé de connexion à l'api 
 
 ### Configuration de l'environnement
 
-Après avoir clôné ce dépôt, il faut modifier le fichier conf.py:
+Après avoir clôné ce dépôt, il faut modifier dans le fichier conf.py:
 - DIRPATH est le chemin absolu du projet sur la machine sur laquelle vous l'installez
 - KEY est la clé de connexion à l'api de OpenWeatherMap
-- LAT, LON et LIMITS n'ont pas besoin d'être modifiés
+
+Par contre, LAT, LON et LIMITS n'ont pas besoin d'être modifiés.
 
 Ensuite il faut créer l'environnement virtuel du projet. Ouvrez l'invite de commande et exécutez cette instruction:
 ```
@@ -112,7 +113,7 @@ https://towardsdatascience.com/time-series-forecasting-with-machine-learning-b30
 
 On part donc sur l'hypothèse qu'il est possible de prédire la disponibilité en se basant sur la cyclicité de l'usage des vélibs et sur les paramètres extérieur qui font légèrement dévier ce cycle (météo, grèves et manifestations essentiellement).
 
-Pour plus d'infos et de détails sur cette partie, consultez le classeur jupyter MachineLearning.ipynb
+__Pour plus d'infos et de détails sur cette partie, consultez le classeur jupyter presentation_machine_learning.ipynb__
 
 #### Générateur de modèles
 
