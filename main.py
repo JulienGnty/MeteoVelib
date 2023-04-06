@@ -146,6 +146,7 @@ def loopDlStatus(info = True, status = True, weather = True, dataset = True):
             try:
                 yesterday = dt.date.today() - dt.timedelta(days = 1)
                 dst.setDataset(str(yesterday).replace("-","_"))
+                dst.setDatasetV2(str(yesterday).replace("-","_"))
             except Exception as e:
                 print("Error with creation of Dataset for " + str(yesterday).replace("-","_"))
                 print(e)
