@@ -1,5 +1,5 @@
 {
-    "lastUpdatedOther": 1680798227,
+    "lastUpdatedOther": 1681305520,
     "ttl": 3600,
     "data": {
         "stations": [
@@ -97,17 +97,6 @@
                 "lon": 2.315508019010038,
                 "capacity": 12,
                 "stationCode": "8026",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 100769544,
-                "name": "Harpe - Saint-Germain",
-                "lat": 48.851518815017,
-                "lon": 2.3436703160405,
-                "capacity": 45,
-                "stationCode": "5001",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -220,6 +209,17 @@
                 "lon": 2.196576297283173,
                 "capacity": 22,
                 "stationCode": "25006",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 100769544,
+                "name": "Harpe - Saint-Germain",
+                "lat": 48.851518815017,
+                "lon": 2.3436703160405,
+                "capacity": 45,
+                "stationCode": "5001",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -966,17 +966,6 @@
                 ]
             },
             {
-                "station_id": 128882438,
-                "name": "Institut du Monde Arabe - Saint-Germain",
-                "lat": 48.849063299501,
-                "lon": 2.3558086529374,
-                "capacity": 40,
-                "stationCode": "5020",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 82567101,
                 "name": "Ch\u00e2teau - R\u00e9publique",
                 "lat": 48.862923800596,
@@ -991,6 +980,17 @@
                 "lon": 2.2872862592339516,
                 "capacity": 16,
                 "stationCode": "22409",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 128882438,
+                "name": "Institut du Monde Arabe - Saint-Germain",
+                "lat": 48.849063299501,
+                "lon": 2.3558086529374,
+                "capacity": 40,
+                "stationCode": "5020",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -1181,17 +1181,6 @@
                 "stationCode": "31009"
             },
             {
-                "station_id": 265464297,
-                "name": "Schoelcher - Raspail",
-                "lat": 48.83681733526843,
-                "lon": 2.3312794080411474,
-                "capacity": 50,
-                "stationCode": "14003",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 126050442,
                 "name": "Pereire - Rennequin",
                 "lat": 48.88364782887555,
@@ -1344,6 +1333,17 @@
                 "lon": 2.3826304078102116,
                 "capacity": 24,
                 "stationCode": "19101"
+            },
+            {
+                "station_id": 265464297,
+                "name": "Schoelcher - Raspail",
+                "lat": 48.83681733526843,
+                "lon": 2.3312794080411474,
+                "capacity": 50,
+                "stationCode": "14003",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
             },
             {
                 "station_id": 1057392676,
@@ -2419,17 +2419,6 @@
                 "stationCode": "10014"
             },
             {
-                "station_id": 647826568,
-                "name": "Saint-Germain - Thenard",
-                "lat": 48.850571,
-                "lon": 2.3471015,
-                "capacity": 31,
-                "stationCode": "5123",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 54000577,
                 "name": "Arago - Glaci\u00e8re",
                 "lat": 48.83486054775774,
@@ -2643,6 +2632,17 @@
                 ]
             },
             {
+                "station_id": 647826568,
+                "name": "Saint-Germain - Thenard",
+                "lat": 48.850571,
+                "lon": 2.3471015,
+                "capacity": 31,
+                "stationCode": "5123",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 17174681330,
                 "name": "Quai du docteur Dervaux",
                 "lat": 48.910482,
@@ -2793,6 +2793,17 @@
                 ]
             },
             {
+                "station_id": 100859941,
+                "name": "Raspail - Bac",
+                "lat": 48.855628721101,
+                "lon": 2.3256602883339,
+                "capacity": 52,
+                "stationCode": "7005",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 49368561,
                 "name": "Jules Ferry - Faubourg du Temple Paris",
                 "lat": 48.868397,
@@ -2862,17 +2873,6 @@
                 "lon": 2.3919824145634565,
                 "capacity": 19,
                 "stationCode": "20121"
-            },
-            {
-                "station_id": 100859941,
-                "name": "Raspail - Bac",
-                "lat": 48.855628721101,
-                "lon": 2.3256602883339,
-                "capacity": 52,
-                "stationCode": "7005",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
             },
             {
                 "station_id": 468843711,
@@ -3003,17 +3003,6 @@
                 "stationCode": "16111"
             },
             {
-                "station_id": 82337423,
-                "name": "Varenne",
-                "lat": 48.857202661803,
-                "lon": 2.3152771219611,
-                "capacity": 47,
-                "stationCode": "7015",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 66491404,
                 "name": "Flandre - Riquet",
                 "lat": 48.888013281448,
@@ -3064,6 +3053,17 @@
                 "lon": 2.3613611608743668,
                 "capacity": 19,
                 "stationCode": "18110"
+            },
+            {
+                "station_id": 82337423,
+                "name": "Varenne",
+                "lat": 48.857202661803,
+                "lon": 2.3152771219611,
+                "capacity": 47,
+                "stationCode": "7015",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
             },
             {
                 "station_id": 478952881,
@@ -3216,34 +3216,12 @@
                 ]
             },
             {
-                "station_id": 82450803,
-                "name": "Square Cambronne",
-                "lat": 48.847566545259745,
-                "lon": 2.3025691509246826,
-                "capacity": 59,
-                "stationCode": "15010",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 568135465,
                 "name": "Paul Vaillant Couturier - Chaptal",
                 "lat": 48.89347957618252,
                 "lon": 2.277525365352631,
                 "capacity": 39,
                 "stationCode": "23001",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 213691542,
-                "name": "Porte Maillot - Pereire",
-                "lat": 48.877775,
-                "lon": 2.284444,
-                "capacity": 0,
-                "stationCode": "17042",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -3287,6 +3265,17 @@
                 ]
             },
             {
+                "station_id": 213691542,
+                "name": "Porte Maillot - Pereire",
+                "lat": 48.877775,
+                "lon": 2.284444,
+                "capacity": 0,
+                "stationCode": "17042",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 652192395,
                 "name": "Route de S\u00e8vres - Porte de Bagatelle",
                 "lat": 48.87525984132485,
@@ -3306,12 +3295,12 @@
                 "stationCode": "11102"
             },
             {
-                "station_id": 210568512,
-                "name": "Assembl\u00e9e Nationale",
-                "lat": 48.861411014652,
-                "lon": 2.3201214185208,
-                "capacity": 63,
-                "stationCode": "7009",
+                "station_id": 82450803,
+                "name": "Square Cambronne",
+                "lat": 48.847566545259745,
+                "lon": 2.3025691509246826,
+                "capacity": 59,
+                "stationCode": "15010",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -3342,6 +3331,17 @@
                 "lon": 2.378623187541962,
                 "capacity": 33,
                 "stationCode": "33009",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 210568512,
+                "name": "Assembl\u00e9e Nationale",
+                "lat": 48.861411014652,
+                "lon": 2.3201214185208,
+                "capacity": 63,
+                "stationCode": "7009",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -3475,14 +3475,6 @@
                 "stationCode": "16034"
             },
             {
-                "station_id": 85165045,
-                "name": "Place Jean-Baptiste Cl\u00e9ment",
-                "lat": 48.81240466867336,
-                "lon": 2.3617091774940495,
-                "capacity": 25,
-                "stationCode": "42707"
-            },
-            {
                 "station_id": 85145704,
                 "name": "R\u00e9union - Avron",
                 "lat": 48.852566752033766,
@@ -3557,6 +3549,14 @@
                 "lon": 2.391795855555629,
                 "capacity": 33,
                 "stationCode": "12030"
+            },
+            {
+                "station_id": 85165045,
+                "name": "Place Jean-Baptiste Cl\u00e9ment",
+                "lat": 48.81240466867336,
+                "lon": 2.3617091774940495,
+                "capacity": 25,
+                "stationCode": "42707"
             },
             {
                 "station_id": 129119449,
@@ -3787,6 +3787,17 @@
                 "stationCode": "17018"
             },
             {
+                "station_id": 653046029,
+                "name": "Place Valhubert",
+                "lat": 48.844182577315,
+                "lon": 2.3640366643667,
+                "capacity": 37,
+                "stationCode": "5116",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 216473073,
                 "name": "Tardieu - Chappe",
                 "lat": 48.884146759782,
@@ -3809,17 +3820,6 @@
                 "lon": 2.3657163977623,
                 "capacity": 27,
                 "stationCode": "13104",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 653046029,
-                "name": "Place Valhubert",
-                "lat": 48.844182577315,
-                "lon": 2.3640366643667,
-                "capacity": 37,
-                "stationCode": "5116",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -3986,6 +3986,17 @@
                 ]
             },
             {
+                "station_id": 27414601,
+                "name": "Saint-Fran\u00e7ois-Xavier",
+                "lat": 48.85154484769,
+                "lon": 2.3146149516106,
+                "capacity": 42,
+                "stationCode": "7014",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 54000548,
                 "name": "Quai Voltaire",
                 "lat": 48.858942986179,
@@ -4041,17 +4052,6 @@
                 "lon": 2.3128929734230046,
                 "capacity": 25,
                 "stationCode": "21105"
-            },
-            {
-                "station_id": 27414601,
-                "name": "Saint-Fran\u00e7ois-Xavier",
-                "lat": 48.85154484769,
-                "lon": 2.3146149516106,
-                "capacity": 42,
-                "stationCode": "7014",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
             },
             {
                 "station_id": 11004671601,
@@ -4413,14 +4413,6 @@
                 "lon": 2.3202589899301524,
                 "capacity": 15,
                 "stationCode": "8051"
-            },
-            {
-                "station_id": 384370499,
-                "name": "Place Charles Vallin",
-                "lat": 48.835523812041,
-                "lon": 2.3025986552238,
-                "capacity": 26,
-                "stationCode": "15122"
             },
             {
                 "station_id": 10968855,
@@ -4859,17 +4851,6 @@
                 ]
             },
             {
-                "station_id": 452347778,
-                "name": "Daumesnil - Picpus",
-                "lat": 48.8374688,
-                "lon": 2.401765,
-                "capacity": 21,
-                "stationCode": "12010",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 82404497,
                 "name": "Ledru-Rollin - Place du P\u00e8re Chaillet",
                 "lat": 48.856433706943704,
@@ -5126,17 +5107,6 @@
                 ]
             },
             {
-                "station_id": 126354477,
-                "name": "Clichy - Place Blanche",
-                "lat": 48.883601088297,
-                "lon": 2.3332237824798,
-                "capacity": 20,
-                "stationCode": "18043",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 213987795,
                 "name": "Wilson - Landy",
                 "lat": 48.91516726221354,
@@ -5336,6 +5306,14 @@
                 ]
             },
             {
+                "station_id": 17526921983,
+                "name": "Mairie de Sceaux",
+                "lat": 48.778916905132,
+                "lon": 2.2887361764861,
+                "capacity": 0,
+                "stationCode": "23304"
+            },
+            {
                 "station_id": 54000546,
                 "name": "S\u00e9nat - Cond\u00e9",
                 "lat": 48.84954227788459,
@@ -5358,12 +5336,15 @@
                 ]
             },
             {
-                "station_id": 54000549,
-                "name": "Villersexel - Saint-Germain",
-                "lat": 48.858297001218,
-                "lon": 2.3237934708595,
-                "capacity": 16,
-                "stationCode": "7008"
+                "station_id": 17527065847,
+                "name": "Chateau",
+                "lat": 48.774661399959,
+                "lon": 2.3135878035462,
+                "capacity": 0,
+                "stationCode": "23403",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
             },
             {
                 "station_id": 256124192,
@@ -5372,6 +5353,14 @@
                 "lon": 2.3860039,
                 "capacity": 42,
                 "stationCode": "19041"
+            },
+            {
+                "station_id": 54000549,
+                "name": "Villersexel - Saint-Germain",
+                "lat": 48.858297001218,
+                "lon": 2.3237934708595,
+                "capacity": 16,
+                "stationCode": "7008"
             },
             {
                 "station_id": 27364581,
@@ -5402,6 +5391,14 @@
                 "rental_methods": [
                     "CREDITCARD"
                 ]
+            },
+            {
+                "station_id": 17527110170,
+                "name": "Stade Gaston Bouillant",
+                "lat": 48.940273514964,
+                "lon": 2.3274196014227,
+                "capacity": 0,
+                "stationCode": "23903"
             },
             {
                 "station_id": 210737808,
@@ -5510,17 +5507,6 @@
                 ]
             },
             {
-                "station_id": 101490103,
-                "name": "Saint-Jacques - Tombe Issoire",
-                "lat": 48.833206330538864,
-                "lon": 2.3369108140468597,
-                "capacity": 23,
-                "stationCode": "14006",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 66491386,
                 "name": "Surcouf - Universit\u00e9",
                 "lat": 48.861273016278126,
@@ -5560,6 +5546,17 @@
                 "lon": 2.35821794718504,
                 "capacity": 29,
                 "stationCode": "4013",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 101490103,
+                "name": "Saint-Jacques - Tombe Issoire",
+                "lat": 48.833206330538864,
+                "lon": 2.3369108140468597,
+                "capacity": 23,
+                "stationCode": "14006",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -5742,23 +5739,23 @@
                 ]
             },
             {
-                "station_id": 100770878,
-                "name": "Poissy - Saint-Germain",
-                "lat": 48.84969649427,
-                "lon": 2.3529685288668,
-                "capacity": 25,
-                "stationCode": "5019",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 27415297,
                 "name": "Square Raymond Souplex",
                 "lat": 48.89183721478911,
                 "lon": 2.335426103165901,
                 "capacity": 52,
                 "stationCode": "18019",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 100770878,
+                "name": "Poissy - Saint-Germain",
+                "lat": 48.84969649427,
+                "lon": 2.3529685288668,
+                "capacity": 25,
+                "stationCode": "5019",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -6009,17 +6006,6 @@
                 ]
             },
             {
-                "station_id": 75313725,
-                "name": "Ferrus - Saint-Jacques",
-                "lat": 48.8313878,
-                "lon": 2.3408563,
-                "capacity": 34,
-                "stationCode": "14007",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 76488849,
                 "name": "Fernand Braudel - Vincent Auriol ",
                 "lat": 48.83637852318147,
@@ -6037,6 +6023,17 @@
                 "lon": 2.30082,
                 "capacity": 22,
                 "stationCode": "8049",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 75313725,
+                "name": "Ferrus - Saint-Jacques",
+                "lat": 48.8313878,
+                "lon": 2.3408563,
+                "capacity": 34,
+                "stationCode": "14007",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -6124,6 +6121,14 @@
                 "lon": 2.3024262188416,
                 "capacity": 31,
                 "stationCode": "8105"
+            },
+            {
+                "station_id": 384370499,
+                "name": "Place Charles Vallin",
+                "lat": 48.835523812041,
+                "lon": 2.3025986552238,
+                "capacity": 26,
+                "stationCode": "15122"
             },
             {
                 "station_id": 66491371,
@@ -6450,6 +6455,17 @@
                 "stationCode": "18014"
             },
             {
+                "station_id": 126354477,
+                "name": "Clichy - Place Blanche",
+                "lat": 48.883601088297,
+                "lon": 2.3332237824798,
+                "capacity": 20,
+                "stationCode": "18043",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 82573931,
                 "name": "Ren\u00e9 Binet - Porte de Montmartre",
                 "lat": 48.89905109950848,
@@ -6757,6 +6773,17 @@
                 "stationCode": "31026"
             },
             {
+                "station_id": 452347778,
+                "name": "Daumesnil - Picpus",
+                "lat": 48.8374688,
+                "lon": 2.401765,
+                "capacity": 21,
+                "stationCode": "12010",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 365181481,
                 "name": "Guy M\u00f4quet - Saint-Ouen",
                 "lat": 48.892777719023975,
@@ -6803,23 +6830,23 @@
                 "stationCode": "35004"
             },
             {
-                "station_id": 1062812659,
-                "name": "Auguste Blanqui - Glaci\u00e8re",
-                "lat": 48.831151602964354,
-                "lon": 2.3438221961259837,
-                "capacity": 60,
-                "stationCode": "13515",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 213995665,
                 "name": "Square Edmond P\u00e9pin",
                 "lat": 48.883656206899,
                 "lon": 2.4033531546593,
                 "capacity": 30,
                 "stationCode": "33104",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 1062812659,
+                "name": "Auguste Blanqui - Glaci\u00e8re",
+                "lat": 48.831151602964354,
+                "lon": 2.3438221961259837,
+                "capacity": 60,
+                "stationCode": "13515",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -8585,17 +8612,6 @@
                 ]
             },
             {
-                "station_id": 255322397,
-                "name": "Auguste Blanqui - Corvisart",
-                "lat": 48.8300989,
-                "lon": 2.3502726,
-                "capacity": 26,
-                "stationCode": "13009",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 1314450240,
                 "name": "Gare du Stade",
                 "lat": 48.9312676,
@@ -8618,6 +8634,17 @@
                 "lon": 2.3344654618827,
                 "capacity": 18,
                 "stationCode": "6012",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 255322397,
+                "name": "Auguste Blanqui - Corvisart",
+                "lat": 48.8300989,
+                "lon": 2.3502726,
+                "capacity": 26,
+                "stationCode": "13009",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -8759,6 +8786,17 @@
                 ]
             },
             {
+                "station_id": 284787594,
+                "name": "Place d'Italie - Vincent Auriol",
+                "lat": 48.831481874467,
+                "lon": 2.3567550292319,
+                "capacity": 40,
+                "stationCode": "13010",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 54000560,
                 "name": "Geoffroy - Marie",
                 "lat": 48.873781940593325,
@@ -8836,17 +8874,6 @@
                 "lon": 2.3414588347077,
                 "capacity": 39,
                 "stationCode": "2108",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 284787594,
-                "name": "Place d'Italie - Vincent Auriol",
-                "lat": 48.831481874467,
-                "lon": 2.3567550292319,
-                "capacity": 40,
-                "stationCode": "13010",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -10638,6 +10665,14 @@
                 ]
             },
             {
+                "station_id": 1074204954,
+                "name": "Quai Jules Guesde - Saint-Simon",
+                "lat": 48.80391487218989,
+                "lon": 2.408966162027371,
+                "capacity": 30,
+                "stationCode": "44001"
+            },
+            {
                 "station_id": 478250062,
                 "name": "Rivoli - Mus\u00e9e du Louvre",
                 "lat": 48.86364636851945,
@@ -10655,14 +10690,6 @@
                 "lon": 2.3607301712036137,
                 "capacity": 28,
                 "stationCode": "4009"
-            },
-            {
-                "station_id": 1074204954,
-                "name": "Quai Jules Guesde - Saint-Simon",
-                "lat": 48.80391487218989,
-                "lon": 2.408966162027371,
-                "capacity": 30,
-                "stationCode": "44001"
             },
             {
                 "station_id": 1063044618,
@@ -11086,17 +11113,6 @@
                 "stationCode": "42018"
             },
             {
-                "station_id": 17364417797,
-                "name": "Decr\u00e8s - Al\u00e9sia",
-                "lat": 48.832200060759,
-                "lon": 2.3139070151575,
-                "capacity": 0,
-                "stationCode": "14201",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 1810975577,
                 "name": "Guy M\u00f4quet - Parvis Georges Marchais",
                 "lat": 48.79518840095975,
@@ -11122,6 +11138,17 @@
                 "lon": 2.3412207886576653,
                 "capacity": 35,
                 "stationCode": "5003",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 17364417797,
+                "name": "Decr\u00e8s - Al\u00e9sia",
+                "lat": 48.832200060759,
+                "lon": 2.3139070151575,
+                "capacity": 30,
+                "stationCode": "14201",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -11477,20 +11504,20 @@
                 "stationCode": "23301"
             },
             {
-                "station_id": 11146696292,
-                "name": "Victor Hugo - Paul Eluard",
-                "lat": 48.819602554907,
-                "lon": 2.4114319673051,
-                "capacity": 32,
-                "stationCode": "42210"
-            },
-            {
                 "station_id": 101761298,
                 "name": "Place du Moulin de Javel",
                 "lat": 48.84021670922,
                 "lon": 2.2716060653329,
                 "capacity": 45,
                 "stationCode": "15058"
+            },
+            {
+                "station_id": 11146696292,
+                "name": "Victor Hugo - Paul Eluard",
+                "lat": 48.819602554907,
+                "lon": 2.4114319673051,
+                "capacity": 32,
+                "stationCode": "42210"
             },
             {
                 "station_id": 11146714746,
@@ -11632,17 +11659,6 @@
                 ]
             },
             {
-                "station_id": 16899518505,
-                "name": "Mariotte - Batignolles",
-                "lat": 48.884571659595,
-                "lon": 2.321469503475,
-                "capacity": 20,
-                "stationCode": "17202",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 16898865154,
                 "name": "St\u00e9phanie Bouvard - Gambetta",
                 "lat": 48.814548138856,
@@ -11692,6 +11708,17 @@
                 "stationCode": "13051"
             },
             {
+                "station_id": 16899518505,
+                "name": "Mariotte - Batignolles",
+                "lat": 48.884571659595,
+                "lon": 2.321469503475,
+                "capacity": 20,
+                "stationCode": "17202",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 12225289563,
                 "name": "B\u00e9ranger - F\u00e9lix Faure",
                 "lat": 48.80404828621485,
@@ -11730,12 +11757,12 @@
                 "stationCode": "20142"
             },
             {
-                "station_id": 2515855808,
-                "name": "Madeleine Vionnet",
-                "lat": 48.902519074064,
-                "lon": 2.3740895837545,
-                "capacity": 34,
-                "stationCode": "33019",
+                "station_id": 653046369,
+                "name": "Carrefour Pleyel",
+                "lat": 48.92034156960326,
+                "lon": 2.3438543826341625,
+                "capacity": 36,
+                "stationCode": "32012",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -11814,34 +11841,12 @@
                 ]
             },
             {
-                "station_id": 437741660,
-                "name": "Saint-Denis - Rivoli",
-                "lat": 48.859059340842,
-                "lon": 2.3476943001151,
-                "capacity": 43,
-                "stationCode": "1003",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
                 "station_id": 16529895896,
                 "name": "Gare - Aristide Briand",
                 "lat": 48.821410564722,
                 "lon": 2.2555950104387,
                 "capacity": 29,
                 "stationCode": "21329",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 653046369,
-                "name": "Carrefour Pleyel",
-                "lat": 48.92034156960326,
-                "lon": 2.3438543826341625,
-                "capacity": 36,
-                "stationCode": "32012",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -11858,12 +11863,34 @@
                 ]
             },
             {
+                "station_id": 2515855808,
+                "name": "Madeleine Vionnet",
+                "lat": 48.902519074064,
+                "lon": 2.3740895837545,
+                "capacity": 34,
+                "stationCode": "33019",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 11218473640,
                 "name": "Bons Raisins - Voltaire",
                 "lat": 48.87282451461399,
                 "lon": 2.1947155570850896,
                 "capacity": 24,
                 "stationCode": "25007",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
+                "station_id": 437741660,
+                "name": "Saint-Denis - Rivoli",
+                "lat": 48.859059340842,
+                "lon": 2.3476943001151,
+                "capacity": 43,
+                "stationCode": "1003",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -12994,6 +13021,17 @@
                 ]
             },
             {
+                "station_id": 66491369,
+                "name": "Montparnasse -  Square Ozanam",
+                "lat": 48.843310567822,
+                "lon": 2.3265242949128,
+                "capacity": 49,
+                "stationCode": "6005",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 27363397,
                 "name": "Jean Bologne - Passy",
                 "lat": 48.857566889784465,
@@ -13027,17 +13065,6 @@
                 "lon": 2.3546943448098,
                 "capacity": 52,
                 "stationCode": "13008",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 66491369,
-                "name": "Montparnasse -  Square Ozanam",
-                "lat": 48.843310567822,
-                "lon": 2.3265242949128,
-                "capacity": 49,
-                "stationCode": "6005",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -13750,14 +13777,6 @@
                 "stationCode": "25010"
             },
             {
-                "station_id": 11266280626,
-                "name": "Cartier Bresson - Denis Papin",
-                "lat": 48.902616,
-                "lon": 2.397814,
-                "capacity": 32,
-                "stationCode": "35021"
-            },
-            {
                 "station_id": 394404659,
                 "name": "Gare Saint-Lazare - Cour du Havre",
                 "lat": 48.875674400851,
@@ -13769,23 +13788,31 @@
                 ]
             },
             {
+                "station_id": 11266280626,
+                "name": "Cartier Bresson - Denis Papin",
+                "lat": 48.902616,
+                "lon": 2.397814,
+                "capacity": 32,
+                "stationCode": "35021"
+            },
+            {
+                "station_id": 101013666,
+                "name": "Bercy - Villot",
+                "lat": 48.841795009027,
+                "lon": 2.3767850184816,
+                "capacity": 34,
+                "stationCode": "12105",
+                "rental_methods": [
+                    "CREDITCARD"
+                ]
+            },
+            {
                 "station_id": 17261310217,
                 "name": "Saint-Germain - Verdun",
                 "lat": 48.882877330093,
                 "lon": 2.4331868384644,
                 "capacity": 30,
                 "stationCode": "32305",
-                "rental_methods": [
-                    "CREDITCARD"
-                ]
-            },
-            {
-                "station_id": 516395829,
-                "name": "Quai des C\u00e9lestins - Henri IV",
-                "lat": 48.8512971,
-                "lon": 2.3624535,
-                "capacity": 14,
-                "stationCode": "4005",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -13813,12 +13840,12 @@
                 ]
             },
             {
-                "station_id": 101013666,
-                "name": "Bercy - Villot",
-                "lat": 48.841795009027,
-                "lon": 2.3767850184816,
-                "capacity": 34,
-                "stationCode": "12105",
+                "station_id": 516395829,
+                "name": "Quai des C\u00e9lestins - Henri IV",
+                "lat": 48.8512971,
+                "lon": 2.3624535,
+                "capacity": 14,
+                "stationCode": "4005",
                 "rental_methods": [
                     "CREDITCARD"
                 ]
@@ -14138,6 +14165,14 @@
                 ]
             },
             {
+                "station_id": 478732841,
+                "name": "Sebastopol - Rambuteau",
+                "lat": 48.86181809267,
+                "lon": 2.3501381278038,
+                "capacity": 16,
+                "stationCode": "4104"
+            },
+            {
                 "station_id": 1062807847,
                 "name": "BNF - Biblioth\u00e8que Nationale de France",
                 "lat": 48.8350268238,
@@ -14147,14 +14182,6 @@
                 "rental_methods": [
                     "CREDITCARD"
                 ]
-            },
-            {
-                "station_id": 478732841,
-                "name": "Sebastopol - Rambuteau",
-                "lat": 48.86181809267,
-                "lon": 2.3501381278038,
-                "capacity": 16,
-                "stationCode": "4104"
             },
             {
                 "station_id": 82402482,
