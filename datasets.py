@@ -51,8 +51,6 @@ def getStationsInfo() -> object:
     with open(cf.DIRPATH + "data/download/altitude.json") as file:
         data_alt = json.load(file)
 
-    print(type(data_alt))
-
     for key in data_alt.keys():
         alt_dict["station_id"].append(int(key))
         alt_dict["altitude"].append(float(data_alt[key]))
@@ -254,7 +252,9 @@ def listDatasets(version = "") -> list:
     return glob(cf.DIRPATH + "data/datasets/stations_status" + version + "_*.zip")
 
 if __name__ == "__main__":
-    print(cf.DIRPATH + "data/download/stations_info.json")
-    print(getStationsInfo())
-    print(list_Datasets())
-    print(list_Datasets(version = "V2"))
+    setDatasetV2("2023_03_31")
+    setDatasetV2("2023_04_01")
+    setDatasetV2("2023_04_02")
+    setDatasetV2("2023_04_03")
+    setDatasetV2("2023_04_04")
+    setDatasetV2("2023_04_05")
